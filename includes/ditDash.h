@@ -7,7 +7,7 @@
 
 void dit(std::ofstream &file, Oscillator oscillator);
 void dash(std::ofstream &file, Oscillator oscillator);
-void charSpace(std::ofstream &file, Oscillator oscillator);
-void wordSpace(std::ofstream &file, Oscillator oscillator);
+void charSpace(std::ofstream &file);
+void wordSpace(std::ofstream &file);
 
 #endif //MORSIN_TIME_DITDASH_H
