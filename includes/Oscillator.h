@@ -2,8 +2,7 @@
 #define MORSIN_TIME_OSCILLATOR_H
 
 #include <cmath>
-
-const int sampleRate = 44100;
+#include "consts.h"
 
 class Oscillator {
     float frequency, amplitude, angle, offset;

@@ -3,6 +3,7 @@
 
 #include <cmath>
 
+const int sampleRate = 44100;
 const int bitDepth = 16;
 const float unitDuration = 0.1;
 const auto maxAmplitude = pow(2, bitDepth - 1) - 1;
