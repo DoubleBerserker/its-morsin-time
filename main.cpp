@@ -1,29 +1,11 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include "includes/Oscillator.h"
 
-const int sampleRate = 44100;
 const int bitDepth = 16;
 const float unitDuration = 0.1;
 const auto maxAmplitude = pow(2, bitDepth - 1) - 1;
-
-class Oscillator{
-    float frequency, amplitude, angle = 0.0f, offset;
-public:
-    Oscillator(float freq, float amp) : frequency(freq), amplitude(amp) {
-        offset = 2 * M_PI * frequency / sampleRate;
-    }
-
-    float process() {
-        auto sample = amplitude * sin(angle);
-        angle += offset;
-        return sample;
-    }
-
-    void reset(){
-        angle = 0.0f;
-    }
-};
 
 void dit(std::ofstream &file, Oscillator oscillator);
 void dash(std::ofstream &file, Oscillator oscillator);
