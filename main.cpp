@@ -3,10 +3,6 @@
 #include <fstream>
 #include "includes/Oscillator.h"
 
-const int bitDepth = 16;
-const float unitDuration = 0.1;
-const auto maxAmplitude = pow(2, bitDepth - 1) - 1;
-
 void dit(std::ofstream &file, Oscillator oscillator);
 void dash(std::ofstream &file, Oscillator oscillator);
 void charSpace(std::ofstream &file, Oscillator oscillator);
