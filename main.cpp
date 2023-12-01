@@ -7,6 +7,7 @@
 int main(){
     std::ofstream audioFile;
     audioFile.open("waveform", std::ios::binary);
+
     Oscillator oscillator(440, 0.5);
 
     // S - dit dit dit
@@ -14,14 +15,14 @@ int main(){
     dit(audioFile, oscillator);
     dit(audioFile, oscillator);
 
-    charSpace(audioFile, oscillator);
+    charSpace(audioFile);
 
     // O - dash dash dash
     dash(audioFile, oscillator);
     dash(audioFile, oscillator);
     dash(audioFile, oscillator);
 
-    charSpace(audioFile, oscillator);
+    charSpace(audioFile);
 
     // S - dit dit dit
     dit(audioFile, oscillator);
