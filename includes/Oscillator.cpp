@@ -10,6 +10,6 @@ float Oscillator::process() {
     return static_cast<float>(sample);
 }
 
-inline void Oscillator::reset() {
+void Oscillator::reset() {
     angle = 0.0f;
 }

@@ -7,4 +7,5 @@ add_executable(morsin_time
         main.cpp
         includes/Oscillator.cpp
         includes/consts.h
-        includes/ditDash.cpp)
+        includes/ditDash.cpp
+        includes/metadata.cpp)
