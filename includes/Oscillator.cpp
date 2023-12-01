@@ -1,4 +1,3 @@
-#include <cmath>
 #include "Oscillator.h"
 
 Oscillator::Oscillator(float freq, float amp) : frequency(freq), amplitude(amp), angle(0.0f){

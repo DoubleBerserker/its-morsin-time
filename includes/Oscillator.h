@@ -1,6 +1,8 @@
 #ifndef MORSIN_TIME_OSCILLATOR_H
 #define MORSIN_TIME_OSCILLATOR_H
 
+#include <cmath>
+
 const int sampleRate = 44100;
 
 class Oscillator {
