@@ -1,37 +1,25 @@
 #include <iostream>
 #include <fstream>
 #include "includes/Oscillator.h"
-#include "includes/ditDash.h"
 #include "includes/metadata.h"
+#include "includes/characters.h"
 
 int main(){
     std::ofstream audioFile;
     audioFile.open("waveform.wav", std::ios::binary);
 
-    Oscillator oscillator(440, 0.5);
+    Oscillator oscillator(600, 0.5);
 
     wavMetadata(audioFile);
-
     int preAudioPosition = audioFile.tellp();   // Position of stream pointer before audio data
 
-    // S - dit dit dit
-    dit(audioFile, oscillator);
-    dit(audioFile, oscillator);
-    dit(audioFile, oscillator);
+    std::string input;
+    std::cout << "Enter the sentence:";
+    std::getline(std::cin, input);
+    characters Sentence(input);
 
-    charSpace(audioFile);
-
-    // O - dash dash dash
-    dash(audioFile, oscillator);
-    dash(audioFile, oscillator);
-    dash(audioFile, oscillator);
-
-    charSpace(audioFile);
-
-    // S - dit dit dit
-    dit(audioFile, oscillator);
-    dit(audioFile, oscillator);
-    dit(audioFile, oscillator);
+    Sentence.toMorse();
+    Sentence.writeMorse(audioFile, oscillator);
 
     int postAudioPosition = audioFile.tellp();  // Position of stream pointer after audio data
     audioFile.seekp(preAudioPosition - 4);  // Seek to the size of file sub-chunk in metadata
