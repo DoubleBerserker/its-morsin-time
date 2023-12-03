@@ -63,7 +63,8 @@ void characters::empty(std::ofstream &file) {
 
 void characters::toMorse() {
     for(char & it : inputText) {
-        morseText.append(charMap[it]).append("...");
+        if(isalnum(it))
+            morseText.append(charMap[it]).append("...");
     }
     std::cout << morseText;
 }
