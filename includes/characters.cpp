@@ -32,7 +32,7 @@ characters::characters(std::string input) {
             {'x', "1001"},
             {'y', "1011"},
             {'z', "1100"},
-            {' ', "."}
+            {' ', " "}
     };
 }
 
@@ -43,6 +43,7 @@ void characters::dit(std::ofstream &file, Oscillator oscillator) {
         int intSample = static_cast<int>(sample * maxAmplitude);
         file.write(reinterpret_cast<char *>(&intSample), 2);
     }
+//    std::cout << "0";  // For troubleshooting
 }
 
 void characters::dash(std::ofstream &file, Oscillator oscillator) {
@@ -52,6 +53,7 @@ void characters::dash(std::ofstream &file, Oscillator oscillator) {
         int intSample = static_cast<int>(sample * maxAmplitude);
         file.write(reinterpret_cast<char *>(&intSample), 2);
     }
+//    std::cout << "1";  // For troubleshooting
 }
 
 void characters::empty(std::ofstream &file) {
@@ -59,27 +61,34 @@ void characters::empty(std::ofstream &file) {
         int intSample = 0;
         file.write(reinterpret_cast<char *>(&intSample), 2);
     }
+//    std::cout << ".";  // For troubleshooting
 }
 
 void characters::toMorse() {
     for(char & it : inputText) {
-        if(isalnum(it))
-            morseText.append(charMap[it]).append("...");
+        if(isalnum(it) || it == ' ')
+            morseText.append(charMap[it]).append(".");
     }
-    std::cout << morseText;
+    std::cout << "Morse Form: " << morseText << std::endl;
 }
 
 void characters::writeMorse(std::ofstream &file, Oscillator oscillator) {
     for(char & it : morseText) {
         if (it == '0') {
-            empty(file);
             dit(file, oscillator);
+            empty(file);
         }
         else if (it == '1') {
-            empty(file);
             dash(file, oscillator);
-        }
-        else if (it == '.')
             empty(file);
+        }
+        else if (it == '.') {
+            empty(file);
+            empty(file);
+        }
+        else if (it == ' ') {
+            empty(file);
+            empty(file);
+        }
     }
 }
