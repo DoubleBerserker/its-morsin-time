@@ -8,4 +8,5 @@ add_executable(morsin_time
         includes/Oscillator.cpp
         includes/consts.h
         includes/metadata.cpp
-        includes/characters.cpp)
+        includes/characters.cpp
+        includes/txt2morse.cpp)
