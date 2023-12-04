@@ -1,34 +1,54 @@
 #include <iostream>
-#include <fstream>
-#include "includes/Oscillator.h"
-#include "includes/metadata.h"
-#include "includes/characters.h"
+#include "includes/txt2morse.h"
+#include "includes/wav2txt.h"
+#include <limits>
 
 int main(){
-    std::ofstream audioFile;
-    audioFile.open("waveform.wav", std::ios::binary);
 
-    Oscillator oscillator(600, 0.5);
+    while(true) {
+        std::cout << "Enter the operation you want to perform:[Input: 1 (or) 2]\n"
+                     "1. Convert plaintext to Morse Code WAV file.\n"
+                     "2. Convert Morse Code WAV file to plaintext\n"
+                     "3. Exit" << std::endl;
 
-    wavMetadata(audioFile);
-    int preAudioPosition = audioFile.tellp();   // Position of stream pointer before audio data
+        char choice;
+        std::cin >> choice;
 
-    std::string input;
-    std::cout << "Enter the sentence:";
-    std::getline(std::cin, input);
-    characters Sentence(input);
+        switch (choice) {
+            case '1': {
+                float freq;
+                std::cout << "Enter the frequency of sine oscillator (in Hz, default = 600):";
+                std::cin >> freq;
+                // Bad input handling
+                if (std::cin.fail()) {
+                    printf("Not a valid input!");
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    break;
+                }
+                try {
+                    txt2morse(freq);
+                }
+                catch (...) {
+                    txt2morse(600.0);
+                }
+                std::cout << "File created!" << std::endl;
+                break;
+            }
+            case '2': {
+                decoder();
+                break;
+            }
+            case '3': {
+                std::cout << "Exiting the program." << std::endl;
+                exit(0);
+            }
 
-    Sentence.toMorse();
-    Sentence.writeMorse(audioFile, oscillator);
-
-    int postAudioPosition = audioFile.tellp();  // Position of stream pointer after audio data
-    audioFile.seekp(preAudioPosition - 4);  // Seek to the size of file sub-chunk in metadata
-    // v Write the size of DATA sub-chunk in the metadata v
-    writeToFile(audioFile, postAudioPosition - preAudioPosition, 4);
-    audioFile.seekp(4, std::ios::beg);  // Seek to the chunk-size offset in metadata
-    // v Size of (entire file - RIFF & size of chunk) v
-    writeToFile(audioFile, postAudioPosition - 8, 4);
-
-    audioFile.close();
-    return 0;
+            default: {
+                std::cout << "Invalid input!" << std::endl;
+                break;
+            }
+        }
+        std::cout << "\n\n" << std::endl;
+    }
 }

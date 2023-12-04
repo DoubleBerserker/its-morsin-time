@@ -9,11 +9,16 @@ void decoder(){
 
     char * buffer = new char[4];
     memset(buffer, 0, sizeof(&buffer));
-    std::ifstream file("waveform.wav", std::ios::binary);
+    std::ifstream file("morse.wav", std::ios::binary);
 
     file.seekg(0, std::ifstream::end);
     fileSize = static_cast<int>(file.tellg());
     std::cout << "File Size: " << fileSize << std::endl;
+
+    if(fileSize == -1) {
+        std::cout << "File does not exist" << std::endl;
+        return;
+    }
 
     // Load the initial buffer
     file.seekg(pos);

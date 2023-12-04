@@ -2,7 +2,7 @@
 
 void txt2morse(float freq) {
     std::string input;
-    std::cout << "Enter plaintext to convert: ";
+    std::cout << "Enter plaintext to convert:";
     std::cin.ignore();
     std::getline(std::cin, input);
 
