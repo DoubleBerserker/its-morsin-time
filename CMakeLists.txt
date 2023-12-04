@@ -9,4 +9,5 @@ add_executable(morsin_time
         includes/consts.h
         includes/metadata.cpp
         includes/characters.cpp
-        includes/txt2morse.cpp)
+        includes/txt2morse.cpp
+        includes/wav2txt.cpp)
