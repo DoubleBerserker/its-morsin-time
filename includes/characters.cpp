@@ -69,7 +69,7 @@ void characters::toMorse() {
         if(isalnum(it) || it == ' ')
             morseText.append(charMap[it]).append(".");
     }
-    std::cout << "Morse Form: " << morseText << std::endl;
+//    std::cout << "Morse Form: " << morseText << std::endl;  // For troubleshooting
 }
 
 void characters::writeMorse(std::ofstream &file, Oscillator oscillator) {
