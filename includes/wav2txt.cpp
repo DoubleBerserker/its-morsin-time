@@ -41,6 +41,7 @@ void decoder(){
 
     std::cout << "Finished execution." << std::endl;
     std::cout << "Morse code translation: " << morseText << std::endl;
+    delete [] buffer;
     file.close();
 }
 
